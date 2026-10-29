@@ -1,0 +1,60 @@
+﻿@model ElegantEventsWeb.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-2">Elegant Events Management</h1>
+    <p class="text-muted mb-4">
+        Welcome to the Elegant Events Management Dashboard
+    </p>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5>Total Clients</h5>
+                    <h2 class="text-primary">
+                        @Model.TotalClients
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5>Total Events</h5>
+                    <h2 class="text-success">
+                        @Model.TotalEvents
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5>Total Venues</h5>
+                    <h2 class="text-warning">
+                        @Model.TotalVenues
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5>Total Payments</h5>
+                    <h2 class="text-danger">
+                        @Model.TotalPayments
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

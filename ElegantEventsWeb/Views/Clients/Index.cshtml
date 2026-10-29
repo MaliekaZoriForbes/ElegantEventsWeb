@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ElegantEventsWeb.Models.Client>
+
+@{
+    ViewData["Title"] = "Client Management";
+}
+
+<div class="container mt-4">
+    <h1>Client Management</h1>
+    <p class="text-muted">
+        View and manage Elegant Events clients.
+    </p>
+    <a asp-controller="Clients"
+       asp-action="Create"
+       class="btn btn-primary mb-3">
+        + Add New Client
+    </a>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Client ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Billing Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <td>@client.Client_ID</td>
+                    <td>@client.Cfname</td>
+                    <td>@client.Clname</td>
+                    <td>@client.Phone</td>
+                    <td>@client.Email</td>
+                    <td>@client.BillingAddress</td>
+                    <td>
+                        <a asp-action="Edit"
+                           asp-route-id="@client.Client_ID"
+                           class="btn btn-sm btn-warning">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@client.Client_ID"
+                           class="btn btn-sm btn-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

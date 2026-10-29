@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ElegantEventsWeb.Models.Event>
+
+@{
+    ViewData["Title"] = "Event Management";
+}
+
+<div class="container mt-4">
+    <h1>Event Management</h1>
+
+    <p class="text-muted">
+        View and manage Elegant Events bookings.
+    </p>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Event ID</th>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>Guests</th>
+                <th>Budget</th>
+                <th>Client ID</th>
+                <th>Venue</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Event_ID</td>
+                    <td>@item.Event_Name</td>
+                    <td>@item.Event_Date.ToString("dd MMM yyyy")</td>
+                    <td>@item.NumberOfGuests</td>
+                    <td>@item.Budget.ToString("N2")</td>
+                    <td>@item.Client_ID</td>
+                    <td>@item.VenueName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

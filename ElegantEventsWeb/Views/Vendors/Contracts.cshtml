@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ElegantEventsWeb.Models.VendorContract>
+
+@{
+    ViewData["Title"] = "Vendor Contracts";
+}
+
+<div class="container mt-4">
+    <h1>Vendor Contracts</h1>
+
+    <p class="text-muted">
+        Contracts for @ViewBag.VendorEmail
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Event ID</th>
+                    <th>Event Name</th>
+                    <th>Event Date</th>
+                    <th>Contract Date</th>
+                    <th>Payment Status</th>
+                    <th>Cost (JMD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contract in Model)
+                {
+                    <tr>
+                        <td>@contract.Event_ID</td>
+                        <td>@contract.Event_Name</td>
+                        <td>@contract.Event_Date.ToString("dd MMM yyyy")</td>
+                        <td>@contract.ContractDate.ToString("dd MMM yyyy")</td>
+                        <td>@contract.PaymentStatus</td>
+                        <td>@contract.Cost.ToString("N2")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No contracts found for this vendor.
+        </div>
+    }
+
+    <a asp-controller="Vendors"
+       asp-action="Index"
+       class="btn btn-secondary">
+        Back to Vendors
+    </a>
+</div>

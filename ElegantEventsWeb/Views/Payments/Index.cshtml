@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ElegantEventsWeb.Models.Payment>
+
+@{
+    ViewData["Title"] = "Payment Management";
+}
+
+<div class="container mt-4">
+    <h1>Payment Management</h1>
+
+    <p class="text-muted">
+        View payments recorded for Elegant Events contracts.
+    </p>
+
+    <a asp-controller="Payments"
+       asp-action="Create"
+       class="btn btn-primary mb-3">
+        + Record New Payment
+    </a>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Payment #</th>
+                    <th>Vendor</th>
+                    <th>Event ID</th>
+                    <th>Contract Date</th>
+                    <th>Amount (JMD)</th>
+                    <th>Balance (JMD)</th>
+                    <th>Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var payment in Model)
+                {
+                    <tr>
+                        <td>@payment.PaymentNumber</td>
+                        <td>@payment.VEmail</td>
+                        <td>@payment.Event_ID</td>
+                        <td>
+                            @payment.ContractDate.ToString("dd MMM yyyy")
+                        </td>
+                        <td>@payment.AmountPaid.ToString("N2")</td>
+                        <td>
+                            @payment.BalanceOutstanding.ToString("N2")
+                        </td>
+                        <td>@payment.MethodPay</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

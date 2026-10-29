@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Venue Availability";
+    var venues = ViewBag.Venues as List<string>
+                 ?? new List<string>();
+    bool? isAvailable = ViewBag.IsAvailable as bool?;
+}
+
+<div class="container mt-4">
+    <h1>Check Venue Availability</h1>
+
+    <p class="text-muted">
+        Select a venue and date to check existing bookings.
+    </p>
+
+    <form method="get" asp-action="CheckAvailability">
+
+        <div class="mb-3">
+            <label class="form-label">Venue</label>
+            <select name="venueName"
+                    class="form-select" required>
+                <option value="">Select a venue</option>
+
+                @foreach (var venue in venues)
+                {
+                    <option value="@venue"
+                            selected="@(ViewBag.VenueName == venue)">
+                        @venue
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Event Date</label>
+            <input name="eventDate"
+                   type="date"
+                   class="form-control"
+                   value="@(ViewBag.EventDate?.ToString("yyyy-MM-dd"))"
+                   required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Check Availability
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Back to Venues
+        </a>
+    </form>
+
+    @if (isAvailable.HasValue)
+    {
+        <div class="alert @(isAvailable.Value
+             ? "alert-success" : "alert-danger") mt-4">
+
+            @if (isAvailable.Value)
+            {
+                <strong>Venue Available!</strong>
+                <p>No existing booking was found for this date.</p>
+            }
+            else
+            {
+                <strong>Venue Unavailable!</strong>
+                <p>This venue is already booked on the selected date.</p>
+            }
+        </div>
+    }
+</div>

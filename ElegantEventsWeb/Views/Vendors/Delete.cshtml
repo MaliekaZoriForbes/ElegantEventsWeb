@@ -1,0 +1,38 @@
+﻿@model ElegantEventsWeb.Models.Vendor
+
+@{
+    ViewData["Title"] = "Delete Vendor";
+}
+
+<div class="container mt-4">
+    <h1>Delete Vendor</h1>
+
+    <div class="alert alert-warning">
+        Are you sure you want to delete this vendor?
+    </div>
+
+    <p>
+        <strong>Name:</strong>
+        @Model.VFName @Model.VLName
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        @Model.VEmail
+    </p>
+
+    <form asp-action="Delete"
+          asp-route-id="@Model.VEmail"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <button type="submit" class="btn btn-danger">
+            Confirm Delete
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>

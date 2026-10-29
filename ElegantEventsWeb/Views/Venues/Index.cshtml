@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ElegantEventsWeb.Models.Venue>
+
+@{
+    ViewData["Title"] = "Venue Management";
+}
+
+<div class="container mt-4">
+    <h1>Venue Management</h1>
+
+    <p class="text-muted">
+        View available event venues and rental details.
+    </p>
+
+    <a asp-controller="Venues"
+       asp-action="CheckAvailability"
+       class="btn btn-primary mb-3">
+        Check Venue Availability
+    </a>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Venue Name</th>
+                    <th>Rental Fee (JMD)</th>
+                    <th>Capacity</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var venue in Model)
+                {
+                    <tr>
+                        <td>@venue.VenueName</td>
+                        <td>@venue.RentalFee.ToString("N2")</td>
+                        <td>@venue.Capacity</td>
+                        <td>@venue.Location</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

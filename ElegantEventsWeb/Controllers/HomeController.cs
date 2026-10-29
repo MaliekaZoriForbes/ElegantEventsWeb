@@ -3,9 +3,10 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ElegantEventsWeb.Models;
 using ElegantEventsWeb.Data;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ElegantEventsWeb.Controllers
 {
+    [Authorize(Roles = "Administrator,Coordinator")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

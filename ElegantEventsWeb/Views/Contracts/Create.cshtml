@@ -1,0 +1,74 @@
+﻿@model ElegantEventsWeb.Models.Contract
+
+@{
+    ViewData["Title"] = "Create Contract";
+}
+
+<div class="container mt-4">
+    <h1>Create New Contract</h1>
+    <p class="text-muted">
+        Assign a vendor to an event and create a contract.
+    </p>
+
+    <form asp-controller="Contracts"
+          asp-action="Create"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="All"
+             class="text-danger"></div>
+
+        <div class="mb-3">
+            <label class="form-label">Vendor</label>
+            <select asp-for="VEmail"
+                    asp-items="ViewBag.Vendors"
+                    class="form-select" required>
+                <option value="">Select Vendor</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Event</label>
+            <select asp-for="Event_ID"
+                    asp-items="ViewBag.Events"
+                    class="form-select" required>
+                <option value="">Select Event</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contract Date</label>
+            <input asp-for="ContractDate"
+                   type="date"
+                   asp-format="{0:yyyy-MM-dd}"
+                   class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contract Cost (JMD)</label>
+            <input asp-for="Cost"
+                   type="number"
+                   min="0.01"
+                   step="0.01"
+                   class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Payment Status</label>
+            <input value="Outstanding"
+                   class="form-control" readonly />
+            <small class="text-muted">
+                Status changes automatically when payments are recorded.
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Contract
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>

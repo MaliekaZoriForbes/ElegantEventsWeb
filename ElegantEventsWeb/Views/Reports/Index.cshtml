@@ -1,0 +1,103 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewData["Title"] = "SQL Reports";
+    string selectedReport =
+        ViewBag.SelectedReport as string ?? "clients";
+}
+
+<div class="container-fluid mt-4">
+    <h1>Elegant Events Reports</h1>
+
+    <p class="text-muted">
+        Reports generated directly from SQL Server views.
+    </p>
+
+    <form method="get" asp-action="Index" class="mb-4">
+        <label class="form-label fw-bold">
+            Select Report
+        </label>
+
+        <div class="row g-2">
+            <div class="col-md-6">
+                <select name="report" class="form-select">
+                    <option value="clients"
+                            selected="@(selectedReport == "clients")">
+                        Client Events Report
+                    </option>
+
+                    <option value="staff"
+                            selected="@(selectedReport == "staff")">
+                        Event Staff Report
+                    </option>
+
+                    <option value="vendors"
+                            selected="@(selectedReport == "vendors")">
+                        Event Vendors Report
+                    </option>
+
+                    <option value="venues"
+                            selected="@(selectedReport == "venues")">
+                        Event Venues Report
+                    </option>
+
+                    <option value="weddings"
+                            selected="@(selectedReport == "weddings")">
+                        Wedding Details Report
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">
+                    Generate Report
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            SQL View Report
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            @foreach (System.Data.DataColumn column
+                                in Model.Columns)
+                            {
+                                <th>@column.ColumnName</th>
+                            }
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (System.Data.DataRow row in Model.Rows)
+                        {
+                            <tr>
+                                @foreach (var value in row.ItemArray)
+                                {
+                                    <td>@value</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (Model.Rows.Count == 0)
+            {
+                <div class="alert alert-info">
+                    No records found for this report.
+                </div>
+            }
+
+            <p class="text-muted mt-3">
+                Total Records: @Model.Rows.Count
+            </p>
+        </div>
+    </div>
+</div>

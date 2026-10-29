@@ -1,0 +1,62 @@
+﻿@model ElegantEventsWeb.Models.Vendor
+
+@{
+    ViewData["Title"] = "Add Vendor";
+}
+
+<div class="container mt-4">
+    <h1>Add New Vendor</h1>
+    <p class="text-muted">Enter the vendor's details below.</p>
+
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="All"
+             class="text-danger"></div>
+
+        <div class="mb-3">
+            <label class="form-label">Vendor Email</label>
+            <input asp-for="VEmail" type="email"
+                   class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input asp-for="VFName" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <input asp-for="VLName" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input asp-for="VAddress" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contact Person</label>
+            <input asp-for="ContactPersonnel" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input asp-for="VPhone" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Subvendor Email (Optional)</label>
+            <input asp-for="SubvendorEmail" type="email"
+                   class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Vendor
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>

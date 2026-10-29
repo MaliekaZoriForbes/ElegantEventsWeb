@@ -10,7 +10,18 @@
     <p class="text-muted">
         View and manage Elegant Events bookings.
     </p>
+    <a asp-controller="Events"
+       asp-action="Create"
+       class="btn btn-primary mb-3">
+        + Book New Event
+    </a>
 
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>

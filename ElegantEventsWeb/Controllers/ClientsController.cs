@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using ElegantEventsWeb.Data;
 using ElegantEventsWeb.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ElegantEventsWeb.Controllers
 {
+    [Authorize(Roles = "Administrator,Coordinator")]
     public class ClientsController : Controller
     {
         private readonly DatabaseConnection _database;

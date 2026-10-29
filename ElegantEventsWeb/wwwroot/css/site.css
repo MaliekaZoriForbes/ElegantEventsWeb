@@ -29,3 +29,75 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Elegant Events custom styling */
+
+body {
+    background-color: #f6f7fb;
+    color: #252b37;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.navbar {
+    padding: 15px 20px;
+}
+
+.navbar-brand {
+    font-size: 1.35rem;
+    letter-spacing: 0.3px;
+}
+
+.nav-link {
+    font-size: 0.92rem;
+    margin-right: 8px;
+}
+
+    .nav-link:hover {
+        color: #f4ce8f !important;
+    }
+
+h1 {
+    font-weight: 700;
+    color: #252b37;
+    margin-bottom: 15px;
+}
+
+.card {
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+    }
+
+.card-body {
+    padding: 25px;
+}
+
+.table {
+    background: white;
+    vertical-align: middle;
+}
+
+    .table th {
+        white-space: nowrap;
+    }
+
+.btn {
+    border-radius: 7px;
+}
+
+.alert {
+    border-radius: 8px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 7px;
+    padding: 10px;
+}
+
+footer {
+    background-color: white;
+}

@@ -1,0 +1,66 @@
+﻿@model ElegantEventsWeb.Models.Vendor
+
+@{
+    ViewData["Title"] = "Edit Vendor";
+}
+
+<div class="container mt-4">
+    <h1>Edit Vendor</h1>
+
+    <form asp-action="Edit"
+          asp-route-id="@Model.VEmail"
+          method="post">
+
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="VEmail" />
+
+        <div asp-validation-summary="All"
+             class="text-danger"></div>
+
+        <div class="mb-3">
+            <label class="form-label">Vendor Email</label>
+            <input asp-for="VEmail"
+                   class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input asp-for="VFName" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <input asp-for="VLName" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input asp-for="VAddress" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contact Person</label>
+            <input asp-for="ContactPersonnel"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input asp-for="VPhone" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Subvendor Email</label>
+            <input asp-for="SubvendorEmail"
+                   type="email" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Changes
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>

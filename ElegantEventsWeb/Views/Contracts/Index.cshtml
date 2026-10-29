@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ElegantEventsWeb.Models.Contract>
+
+@{
+    ViewData["Title"] = "Contracts Management";
+}
+
+<div class="container mt-4">
+    <h1>Contracts Management</h1>
+
+    <p class="text-muted">
+        View vendor contracts, payment statuses and
+        outstanding balances.
+    </p>
+    <a asp-controller="Contracts"
+       asp-action="Create"
+       class="btn btn-primary mb-3">
+        + Create New Contract
+    </a>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Vendor Email</th>
+                    <th>Event ID</th>
+                    <th>Event Name</th>
+                    <th>Contract Date</th>
+                    <th>Cost (JMD)</th>
+                    <th>Payment Status</th>
+                    <th>Outstanding (JMD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contract in Model)
+                {
+                    <tr>
+                        <td>@contract.VEmail</td>
+                        <td>@contract.Event_ID</td>
+                        <td>@contract.EventName</td>
+                        <td>@contract.ContractDate.ToString("dd MMM yyyy")</td>
+                        <td>@contract.Cost.ToString("N2")</td>
+                        <td>
+                            @if (contract.PaymentStatus == "Fully Paid")
+                            {
+                                <span class="badge bg-success">Fully Paid</span>
+                            }
+                            else if (contract.PaymentStatus == "Partially Paid")
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    Partially Paid
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">
+                                    Outstanding
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            @contract.OutstandingBalance.ToString("N2")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
